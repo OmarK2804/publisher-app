@@ -78,6 +78,24 @@ This is the place for you to write reflections:
 
 #### Reflection Publisher-1
 
+1) To maintain and extend the code in the long run, it is better to implement interface(trait). But, if we want to keep the code simple, straightfoward and unlikely to change in the future, then we don't have to implement interface(trait).
+
+2) To ensure that both id and url are unique across all subscribers, using a DashMap is necessary. A DashMap allows you to maintain a mapping of unique keys (such as id or url) to their corresponding values.
+
+3) We may still need DashMap if we want to manage a `SUBSCRIBERS` variable with thread safety as a primary concern.
+
 #### Reflection Publisher-2
 
+1) Separating `Service` and `Repository` from a model aligns with S.O.L.I.D principles as it promotes better maintainability, flexibility, and testability.
+
+2) If we use only the model, the code complexity for each model will increase since they all trying to handle all the concerns single handedly. 
+
+3) In my current work, Postman supports the creation of automated test scripts using JavaScript. It can validate API responses and perform data-driven testing. Automated tests can be run as part of a collection or individually. Postman feature that might be helpful for my group project is interface to send HTTP requests to APIs and inspect the responses. This makes it easy to test various endpoints and parameters during development.
+
 #### Reflection Publisher-3
+
+1) We use push model in `NotificationService` to notifies subscribers about product updates. The service iterates over the list of subscribers and sends notifications to each subscriber by calling the update method on each subscriber.
+
+2) If we use pull model, subscribers can actively request updates from the publisher when they need them. The disadvantage is it may increase the code complexity since it required additional logic.
+
+3) Without multi-threading, the program will execute notifications synchronously, meaning that each notification will be sent to subscribers one by one in a sequential manner.
